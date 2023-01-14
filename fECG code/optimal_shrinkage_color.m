@@ -1,4 +1,4 @@
-function [Y_os,eta,r_p,k] = optimal_shrinkage_color5(Y,loss,method)
+function [Y_os,eta,r_p,k] = optimal_shrinkage_color(Y,loss,method)
 %Optimal singular value shrinkage over color noise
 %=========input====================
 % Y : Noisy data matrix;
