@@ -1,4 +1,4 @@
-function [ceps0, tceps] = cepstrum_convert(tfr, tfrtic, g, fs, Tc, num_s, HighFreq, LowFreq)
+function [ceps0, tceps] = cepstrum_convert(tfr, tfrtic, g, fs,Tc,alpha, num_s, HighFreq, LowFreq)
 
 if g~=0
     ceps = real(ifft(abs(tfr).^g,2*size(tfr,1),1));
@@ -21,9 +21,9 @@ ceps(isnan(ceps)|isinf(ceps))=0;
 
 ceps = ceps(1:round(1/LowFreq),:);
 ceps0=ceps;
-ceps =  interp1(1:size(ceps,1), ceps, 1:0.1:size(ceps,1));
+ceps =  interp1(1:size(ceps,1), ceps, 1:(1/alpha):size(ceps,1));
 tceps=zeros(length(tfrtic),size(ceps,2));
-freq_scale=10.*fs./(1:size(ceps,1)-1);
+freq_scale=alpha.*fs./(1:size(ceps,1)-1);
 empt = [];
 for ii=2:length(tfrtic)-1
     p_index = find(freq_scale > (tfrtic(ii-1)+tfrtic(ii))*fs/2 & freq_scale < (tfrtic(ii+1)+tfrtic(ii))*fs/2);

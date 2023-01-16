@@ -1,0 +1,27 @@
+function [tfrr, tfrtic, t] = step1_IHR(x,fs)
+
+basicTF.win = 500;
+basicTF.hop = 20;
+basicTF.fs = 100;
+basicTF.fr = 0.02;
+basicTF.feat = 'SST11';
+advTF.num_tap = 1;%num_tap(cc);
+advTF.win_type = 'Flattop'; %{'Gaussian','Thomson','multipeak','SWCE'}; %}
+%advTF.win_type = 'Hamming'; %{'Gaussian','Thomson','multipeak','SWCE'}; %}
+advTF.Smo = 1;
+advTF.Rej = 0;
+advTF.ths = 1E-6;
+advTF.HighFreq = 10/100;
+advTF.LowFreq = 0.5/100;
+advTF.lpc = 0;
+cepR.g = 0.3; % g(cc);%0.06;
+cepR.Tc=0;
+P.num_s = 1;
+P.num_c = 1;
+
+
+x_len = floor(length(x)/200)*200;
+x = x(1:x_len);
+x1 = resample(x,100,fs);
+gg = x1; gg = gg-mean(gg);
+[~, ~, ~, tfrr, ~, ~, tfrtic, t] = CFPH(gg, basicTF, advTF, cepR, P);

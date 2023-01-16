@@ -33,6 +33,7 @@ Dh = [Dh 20*Dho];
 % med_num = cepR.med_num; %11;
 g = cepR.g; %0.06;
 Tc = cepR.Tc;
+alpha = cepR.alpha;
 
 MT = num_tap;
 for ii = 1:MT
@@ -77,9 +78,9 @@ end
 
 if lpc>0
     [tfr_lpc, ~, ~, ~] = STFT_IFD_lpc_fast(x, fr/fs, hop, h2, Dh2, lpc);
-    [ceps, tceps] = cepstrum_convert(tfr_lpc, tfrtic, g, fs, Tc, num_c, HighFreq, LowFreq);
+    [ceps, tceps] = cepstrum_convert(tfr_lpc, tfrtic, g, fs, Tc,alpha, num_c, HighFreq, LowFreq);
 else
-    [ceps, tceps] = cepstrum_convert(tfr, tfrtic, g, fs, Tc, num_c, HighFreq, LowFreq);
+    [ceps, tceps] = cepstrum_convert(tfr, tfrtic, g, fs, Tc,alpha, num_c, HighFreq, LowFreq);
 end
 % tceps(tceps>0)=1;
 tfr0 = tfr; %tfr0(tfr0-flo<0)=0;

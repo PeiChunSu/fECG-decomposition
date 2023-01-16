@@ -42,13 +42,13 @@ if n_theta>n_t
     if OptimalShrinkageOpt == "SN"
         [XN0, ~, r_p] = adaptiveHardThresholding(V, k, 'i');
     else
-        [XN0,~,r_p] = optimal_shrinkage_color(V,OptimalShrinkageOpt,'imp');
+        [XN0,~,r_p] = optimal_shrinkage_color5(V,OptimalShrinkageOpt,'imp');
     end
 else
     if OptimalShrinkageOpt == "SN"
         [XN0, ~, r_p] = adaptiveHardThresholding(V', k, 'i');
     else
-        [XN0,~,r_p] = optimal_shrinkage_color(V',OptimalShrinkageOpt,'imp');
+        [XN0,~,r_p] = optimal_shrinkage_color5(V',OptimalShrinkageOpt,'imp');
     end
     XN0 = XN0';
 end
@@ -57,13 +57,13 @@ if n_theta>n_t
     if OptimalShrinkageOpt == "SN"
         [XN02, ~, r_p] = adaptiveHardThresholding(V2, k, 'i');
     else
-        [XN02,~,r_p] = optimal_shrinkage_color(V2,OptimalShrinkageOpt,'imp');
+        [XN02,~,r_p] = optimal_shrinkage_color5(V2,OptimalShrinkageOpt,'imp');
     end
 else
     if OptimalShrinkageOpt == "SN"
         [XN02, ~, r_p] = adaptiveHardThresholding(V2', k, 'i');
     else
-        [XN02,~,r_p] = optimal_shrinkage_color(V2',OptimalShrinkageOpt,'imp');
+        [XN02,~,r_p] = optimal_shrinkage_color5(V2',OptimalShrinkageOpt,'imp');
     end
     XN02 = XN02';
 end
